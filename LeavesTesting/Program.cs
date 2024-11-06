@@ -30,7 +30,7 @@ clientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain,
 
 HttpClient client = new HttpClient(clientHandler);
 HttpResponseMessage response = await client.SendAsync(httpRequest);
-Console.WriteLine(response.StatusCode + " " + response.Headers);
+Console.WriteLine(response.StatusCode);
 
 // Pass the handler to httpclient(from you are calling api)
 //HttpClient client = new HttpClient();
