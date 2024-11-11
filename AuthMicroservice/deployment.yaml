@@ -1,0 +1,26 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authmicroservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: authmicroservice
+  template:
+    metadata:
+      labels:
+        app: authmicroservice
+    spec:
+      containers:
+        - name: authmicroservice
+          image: authmicroservice:dev
+          resources:
+            requests:
+              memory: "256Mi"  # Минимум 256MB
+              cpu: "250m"      # Минимум 0.25 CPU
+            limits:
+              memory: "512Mi"  # Максимум 512MB
+              cpu: "1"         # Максимум 1 CPU
+          ports:
+            - containerPort: 80

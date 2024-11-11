@@ -1,0 +1,15 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: authmicroservice
+spec:
+  selector:
+    app: authmicroservice  # Сервис будет направлять трафик на поды с этим лейблом
+  ports:
+    - protocol: TCP
+      port: 80  # Порт, через который доступен сервис
+      targetPort: 80  # Порт, на котором работает контейнер в поде
+  type: ClusterIP  # Используйте LoadBalancer или NodePort, если нужно открыть сервис для внешнего доступа
+
+
+
