@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: authmicroservice
-    image: authmicroservice:dev
+    image: authmicroservice:latest
     ports:
     - containerPort: 80
     resources:

@@ -33,6 +33,8 @@ namespace UserMicroservice
 
             services.AddDbContext<LeavesDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
+
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
@@ -46,6 +48,7 @@ namespace UserMicroservice
             services.AddScoped<UserSevice>();
             services.AddScoped<TokenService>();
 
+            
 
             services.AddSwaggerGen(c =>
             {
@@ -94,6 +97,7 @@ namespace UserMicroservice
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
+                    
                     c.SwaggerEndpoint("/swagger/Leaves/swagger.json", "AuthService");
                 });
             }
@@ -103,8 +107,7 @@ namespace UserMicroservice
             }
 
 
-
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");
             app.UseRouting();
 

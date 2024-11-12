@@ -5,7 +5,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
 EXPOSE 8080
-EXPOSE 8081
+#EXPOSE 8081
 
 # Этот этап используется для сборки проекта службы
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -26,5 +26,10 @@ RUN dotnet publish "./AuthMicroservice.csproj" -c $BUILD_CONFIGURATION -o /app/p
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENV ASPNETCORE_URLS="http://0.0.0.0:8080;https://0.0.0.0:8081"
+ENV ASPNETCORE_URLS="http://0.0.0.0:8080" 
 ENTRYPOINT ["dotnet", "AuthMicroservice.dll"]
+
+
+
+
+
