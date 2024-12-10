@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-app-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Перенаправление HTTP на HTTPS
+spec:
+  tls:
+    - hosts:
+        - "my-app.example.com"  # Имя вашего домена
+      secretName: my-tls-secret  # Имя секрета с сертификатом
+  rules:
+    - host: "my-app.example.com"  # Имя вашего домена
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: authmicroservice  # Имя сервиса вашего приложения
+                port:
+                  number: 80  # Порт вашего сервиса

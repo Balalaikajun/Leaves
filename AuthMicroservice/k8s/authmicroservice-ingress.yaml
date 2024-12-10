@@ -1,0 +1,22 @@
+﻿apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authmicroservice-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - auth.local
+    secretName: my-tls-secret  # Укажите имя созданного секрета
+  rules:
+  - host: auth.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: authmicroservice  # Только имя сервиса
+            port:
+              number: 80

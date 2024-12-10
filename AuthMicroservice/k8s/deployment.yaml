@@ -1,4 +1,4 @@
-﻿apiVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: authmicroservice
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: authmicroservice
-          image: authmicroservice:latest
+          image: balalaikajun/authmicroservice:latest
           resources:
             requests:
               memory: "256Mi"  # Минимум 256MB
@@ -24,3 +24,5 @@ spec:
               cpu: "1"         # Максимум 1 CPU
           ports:
             - containerPort: 80
+      imagePullSecrets:
+        - name: my-dockerhub-secret
